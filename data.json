@@ -1,0 +1,92 @@
+[
+    {
+        "name":"facebook",
+        "image":"https://placehold.co/400/white/blue?text=facebook",
+        "desc":"not implemented yet",
+        "need_authentication":false,
+        "sub_folder":false
+    },{
+        "name":"instagram",
+        "image":"https://placehold.co/400/white/purple?text=instagram",
+        "desc":"not implemented yet",
+        "need_authentication":false,
+        "sub_folder":false
+    }
+    ,{
+        "name":"item name",
+        "image":"https://placehold.co/400/white/black",
+        "desc":"not implemented yet",
+        "need_authentication":false,
+        "sub_folder":false
+    }
+    ,{
+        "name":"item name",
+        "image":"https://placehold.co/400/white/black",
+        "desc":"not implemented yet",
+        "need_authentication":false,
+        "sub_folder":false
+    }
+    ,{
+        "name":"item name",
+        "image":"https://placehold.co/400/white/black",
+        "desc":"not implemented yet",
+        "need_authentication":false,
+        "sub_folder":false
+    }
+    ,{
+        "name":"item name",
+        "image":"https://placehold.co/400/white/black",
+        "desc":"not implemented yet",
+        "need_authentication":false,
+        "sub_folder":false
+    }
+    ,{
+        "name":"item name",
+        "image":"https://placehold.co/400/white/black",
+        "desc":"not implemented yet",
+        "need_authentication":false,
+        "sub_folder":false
+    }
+    ,{
+        "name":"item name",
+        "image":"https://placehold.co/400/white/black",
+        "desc":"not implemented yet",
+        "need_authentication":false,
+        "sub_folder":true
+    }
+    ,{
+        "name":"item name",
+        "image":"https://placehold.co/400/white/black",
+        "desc":"not implemented yet",
+        "need_authentication":false,
+        "sub_folder":true
+    }
+    ,{
+        "name":"item name",
+        "image":"https://placehold.co/400/white/black",
+        "desc":"not implemented yet",
+        "need_authentication":false,
+        "sub_folder":true
+    }
+    ,{
+        "name":"item name",
+        "image":"https://placehold.co/400/white/black",
+        "desc":"not implemented yet",
+        "need_authentication":false,
+        "sub_folder":true
+    }
+    ,{
+        "name":"item name",
+        "image":"https://placehold.co/400/white/black",
+        "desc":"not implemented yet",
+        "need_authentication":false,
+        "sub_folder":true
+    }
+    ,{
+        "name":"item name",
+        "image":"https://placehold.co/400/white/black",
+        "desc":"not implemented yet",
+        "need_authentication":false,
+        "sub_folder":true
+    }
+]
