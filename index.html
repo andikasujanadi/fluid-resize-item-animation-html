@@ -7,9 +7,24 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         html, body{
-            background-color: #4accff;
+            background-color: unset;
             margin: 0;
             padding: 0;
+        }
+        html {
+            background-color: #0093E9;
+            background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        img, svg{
+            overflow-clip-margin: content-box;
+            overflow: clip;
+            vertical-align: middle;
+        }
+        *, ::after, ::before {
+            box-sizing: border-box;
         }
         #itemContainer{
             position: relative;
@@ -33,7 +48,6 @@
             border-radius: 1.5rem;
             overflow: hidden;
             transition: all ease 0.3s;
-            /* box-shadow: 0px 0px 20px #00000020; */
         }
         .item-card .img-container:hover{
             cursor: pointer;
@@ -48,7 +62,7 @@
             text-align: center;
         }
         .folder-card{
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
             background-color: #ffffff20;
             position: relative;
             border-radius: 1.5rem;
