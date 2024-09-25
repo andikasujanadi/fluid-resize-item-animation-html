@@ -68,6 +68,13 @@
             background-color: #ffffff20;
             position: relative;
             border-radius: 1.5rem;
+            transition: all ease 0.3s;
+        }
+        .open-folder .folder-card{
+            transition: all ease 0.4s!important;
+        }
+        .folder-card::-webkit-scrollbar {
+            display: none;
         }
         .folder-card .item-sub:hover{
             cursor: pointer;
@@ -108,7 +115,6 @@
                 padding-top: 20px;
                 position: absolute;
                 width: 100%!important;
-                height: 100%!important;
                 margin:0!important;
                 background-color: #00000088;
             }
@@ -209,16 +215,21 @@
         
         if(f.classList.contains('open-folder')){
             let h = document.querySelectorAll('.item-card')[0].clientWidth;
+            let height_index = -1;
             folder_items.forEach((element,index) => {
+                let mt = 32;
+                element.style.marginTop = `${(h+8)*height_index+mt}px`;
+                if(index%3 == 0){
+                    height_index+=1;
+                }
                 label = element.querySelector('.label');
                 try {
                     label.style.display = "block";
                 } catch (error) {}
-                mt = 32;
+                
                 element.style.height = h+"px";
                 element.style.width = h+"px";
-                element.style.marginTop = `${(h+8)*0+mt}px`;
-                element.style.marginLeft = `${(h+8)*(index-1)}px`;
+                element.style.marginLeft = `${(h+8)*((index-1)%3)}px`;
                 element.style.display = 'block';
                 element.style.opacity = '1';
                 element.style.pointerEvent = 'auto';
@@ -231,8 +242,10 @@
             actionFolder.style.marginLeft = "0px";
             actionFolder.style.right = "0px";
             actionFolder.style.paddingTop = "1px";
-            element.style.opacity = '0';
-            element.style.pointerEvent = 'none';
+            actionFolder.style.position = "fixed";
+            const ot = document.querySelector('.folder-card').offsetParent.offsetTop;
+            const folderCard = document.querySelector('.folder-card');
+            folderCard.style.height = `calc(100vh - ${ot}px)`;
         }
         else{
             folder_items.forEach((element,index) => {
@@ -271,6 +284,9 @@
             });
             actionFolder.style.marginRight = "8px";
             actionFolder.style.padding = "6px";
+            const folderCard = document.querySelector('.folder-card');
+            folderCard.style.height = `${h}px`;
+
         }
     }
 
@@ -303,7 +319,7 @@
         h = document.querySelectorAll('.img-container')[0].clientWidth;
         let folder = `
             <div id="folder" class="item-card">
-                <div class="folder-card" style="margin:0px 16px; height:${h}px;width:${h}px">
+                <div class="folder-card" style="margin:0px 16px; height:${h}px;width:${h}px; overflow-y:auto; overflow-x:hidden">
         `.trim();
         folder += `
                 <div id="actionFolder" class="item-sub" onclick="openFolder()" style="height:${(h/2)-12}px;width:${(h/2)-12}px; padding:6px; background-color:#FFFFFF50; border-radius: 0.8rem; color:#FFFFFFA0; z-index:1000">
