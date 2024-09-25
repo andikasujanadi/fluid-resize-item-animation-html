@@ -105,6 +105,7 @@
             right:0;
 
             .folder-card{
+                padding-top: 20px;
                 position: absolute;
                 width: 100%!important;
                 height: 100%!important;
@@ -193,7 +194,8 @@
                 default:
                     element.style.marginTop = `${h+8*2}px`;
                     element.style.marginLeft = `${h+8*2}px`;
-                    element.style.display = 'none';
+                    element.style.opacity = '0';
+                    element.style.pointerEvent = 'none';
                     break;
             }
             
@@ -204,6 +206,7 @@
         let f = document.getElementById('folder');
         f.classList.toggle('open-folder');
         let folder_items = document.querySelectorAll('.item-sub');
+        
         if(f.classList.contains('open-folder')){
             let h = document.querySelectorAll('.item-card')[0].clientWidth;
             folder_items.forEach((element,index) => {
@@ -211,40 +214,25 @@
                 try {
                     label.style.display = "block";
                 } catch (error) {}
-
+                mt = 32;
                 element.style.height = h+"px";
                 element.style.width = h+"px";
-                switch (index) {
-                    case 0:
-                        element.style.marginTop = `${h+8*2}px`;
-                        element.style.marginLeft = `${h+8*2}px`;
-                        break;
-                    case 1:
-                        element.style.marginTop = `${8}px`;
-                        element.style.marginLeft = `${8}px`;
-                        break;
-                    case 2:
-                        element.style.marginTop = `${8}px`;
-                        element.style.marginLeft = `${h+8*2}px`;
-                        break;
-                    case 3:
-                        element.style.marginTop = `${h+8*2}px`;
-                        element.style.marginLeft = `${8}px`;
-                        break;
-                    default:
-                        element.style.marginTop = `${h+8*2}px`;
-                        element.style.marginLeft = `${h+8*2}px`;
-                        element.style.display = 'none';
-                        break;
-                }
+                element.style.marginTop = `${(h+8)*0+mt}px`;
+                element.style.marginLeft = `${(h+8)*(index-1)}px`;
+                element.style.display = 'block';
+                element.style.opacity = '1';
+                element.style.pointerEvent = 'auto';
             });
             actionFolder.style.height = "30px";
             actionFolder.style.width = "30px";
             actionFolder.style.marginTop = "12px";
+            actionFolder.style.marginTop = "-8px";
             actionFolder.style.marginRight = "12px";
             actionFolder.style.marginLeft = "0px";
             actionFolder.style.right = "0px";
-            actionFolder.style.padding = "3px";
+            actionFolder.style.paddingTop = "1px";
+            element.style.opacity = '0';
+            element.style.pointerEvent = 'none';
         }
         else{
             folder_items.forEach((element,index) => {
@@ -255,6 +243,7 @@
 
                 element.style.height = (h/2)-12+"px";
                 element.style.width = (h/2)-12+"px";
+                
                 switch (index) {
                 case 0:
                     element.style.marginTop = `${((h/2)-12)+8*2}px`;
@@ -275,10 +264,13 @@
                 default:
                     element.style.marginTop = `${((h/2)-12)+8*2}px`;
                     element.style.marginLeft = `${((h/2)-12)+8*2}px`;
-                    element.style.display = 'none';
+                    element.style.opacity = '0';
+                    element.style.pointerEvent = 'none';
                     break;
             }
             });
+            actionFolder.style.marginRight = "8px";
+            actionFolder.style.padding = "6px";
         }
     }
 
@@ -314,7 +306,7 @@
                 <div class="folder-card" style="margin:0px 16px; height:${h}px;width:${h}px">
         `.trim();
         folder += `
-                <div id="actionFolder" class="item-sub" onclick="openFolder()" style="height:${(h/2)-12}px;width:${(h/2)-12}px; padding:6px; background-color:#FFFFFF50; border-radius: 0.8rem; color:#FFFFFFA0">
+                <div id="actionFolder" class="item-sub" onclick="openFolder()" style="height:${(h/2)-12}px;width:${(h/2)-12}px; padding:6px; background-color:#FFFFFF50; border-radius: 0.8rem; color:#FFFFFFA0; z-index:1000">
                         <svg xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%" width="16" height="16" fill="currentColor" class="bi bi-grid-fill" viewBox="0 0 16 16">
                             <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5z"/>
                         </svg>
@@ -322,7 +314,7 @@
         `.trim();
         folder_items.forEach(e => {
             folder += `
-                    <div class="item-sub" style="height:${(h/2)-12}px;width:${(h/2)-12}px;">
+                    <div class="item-sub" style="height:${(h/2)-12}px;width:${(h/2)-12}px;z-index:0;">
                         <div class="img-container">
                             <img src="${e.image}" alt="">
                         </div>
