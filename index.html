@@ -225,14 +225,17 @@
         });
     }
 
-    const openFolder = () => {
+    const reorderOpenFolder = () => {
         let f = document.getElementById('folder');
-        f.classList.toggle('open-folder');
         let folder_items = document.querySelectorAll('.item-sub');
         
         if(f.classList.contains('open-folder')){
-            let h = document.querySelectorAll('.item-card')[0].clientWidth;
+            const itemContainerWidth = itemContainer.clientWidth;
+            const h = document.querySelectorAll('.item-card')[0].clientWidth;
+            const itemsWidth = h*3+16;
+            const paddingContainer = (itemContainerWidth-itemsWidth)/2
             let height_index = -1;
+
             folder_items.forEach((element,index) => {
                 let mt = 32;
                 element.style.marginTop = `${(h+8)*height_index+mt}px`;
@@ -246,7 +249,37 @@
                 
                 element.style.height = h+"px";
                 element.style.width = h+"px";
-                element.style.marginLeft = `${(h+8)*((index-1)%3)}px`;
+                element.style.marginLeft = `${(h+8)*((index-1)%3)+paddingContainer}px`;
+            });
+        }
+    }
+
+    const openFolder = () => {
+        let f = document.getElementById('folder');
+        f.classList.toggle('open-folder');
+        let folder_items = document.querySelectorAll('.item-sub');
+        
+        if(f.classList.contains('open-folder')){
+            const itemContainerWidth = itemContainer.clientWidth;
+            const h = document.querySelectorAll('.item-card')[0].clientWidth;
+            const itemsWidth = h*3+16;
+            const paddingContainer = (itemContainerWidth-itemsWidth)/2
+            let height_index = -1;
+
+            folder_items.forEach((element,index) => {
+                let mt = 32;
+                element.style.marginTop = `${(h+8)*height_index+mt}px`;
+                if(index%3 == 0){
+                    height_index+=1;
+                }
+                label = element.querySelector('.label');
+                try {
+                    label.style.display = "block";
+                } catch (error) {}
+                
+                element.style.height = h+"px";
+                element.style.width = h+"px";
+                element.style.marginLeft = `${(h+8)*((index-1)%3)+paddingContainer}px`;
                 element.style.display = 'block';
                 element.style.opacity = '1';
                 element.style.pointerEvent = 'auto';
@@ -325,6 +358,7 @@
 
     window.onresize = function(event) {
         reorderItem();
+        reorderOpenFolder();
     };
     folder_items = [];
     fetch('./data.json')
