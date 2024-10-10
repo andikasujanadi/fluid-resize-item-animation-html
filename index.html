@@ -242,7 +242,7 @@
             const itemContainerWidth = itemContainer.clientWidth;
             const h = document.querySelectorAll('.item-card')[0].clientWidth;
             const itemsWidth = h*3+16;
-            const paddingContainer = (itemContainerWidth-itemsWidth)/2
+            const paddingContainer = ((itemContainerWidth-itemsWidth)/2)>0?((itemContainerWidth-itemsWidth)/2):0;
             let height_index = -1;
 
             folder_items.forEach((element,index) => {
@@ -263,6 +263,13 @@
         }
     }
 
+    const openLink = (url,id) => {
+        url = url.match(/^https?:/) ? url : '//' + url;
+        const card = document.getElementById(id);
+        console.log(card);
+        // window.open(url,"_self");
+    }
+
     const openFolder = () => {
         let f = document.getElementById('folder');
         f.classList.toggle('open-folder');
@@ -272,7 +279,7 @@
             const itemContainerWidth = itemContainer.clientWidth;
             const h = document.querySelectorAll('.item-card')[0].clientWidth;
             const itemsWidth = h*3+16;
-            const paddingContainer = (itemContainerWidth-itemsWidth)/2
+            const paddingContainer = ((itemContainerWidth-itemsWidth)/2)>0?((itemContainerWidth-itemsWidth)/2):0;
             let height_index = -1;
 
             folder_items.forEach((element,index) => {
@@ -374,10 +381,10 @@
     .then((response) => response.json())
     .then((json) => {
         let items = ''
-        json.forEach(e => {
+        json.forEach((e,i) => {
             if(!e.sub_folder){
                 items += `
-                <div class="item-card">
+                <div class="item-card" id="item${i}" onclick="openLink('${e.link}','item${i}')">
                     <div class="img-container">
                         <img src="${e.image}" alt="">
                     </div>
@@ -409,9 +416,9 @@
                         </svg>
                 </div>
         `.trim();
-        folder_items.forEach(e => {
+        folder_items.forEach((e,i) => {
             folder += `
-                    <div class="item-sub" style="height:${(h/2)-12}px;width:${(h/2)-12}px;z-index:0;">
+                    <div class="item-sub" id="itemsub${i}" onclick="openLink('${e.link}','itemsub${i}')" style="height:${(h/2)-12}px;width:${(h/2)-12}px;z-index:0;">
                         <div class="img-container">
                             <img src="${e.image}" alt="">
                         </div>
