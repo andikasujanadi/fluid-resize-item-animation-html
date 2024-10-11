@@ -266,9 +266,21 @@
 
     const openLink = (url,id) => {
         url = url.match(/^https?:/) ? url : '//' + url;
-        const card = document.getElementById(id);
-        console.log(card);
-        // window.open(url,"_self");
+        if(!id.includes("sub")){
+            const card = document.getElementById(id);
+            card.style.transform = 'translate(-50%,-50%) scale(18)'
+            card.style.transition = '0.3s all ease'
+            card.style.zIndex = '10'
+            card.style.marginLeft = '50%'
+            card.style.marginTop = '50%'
+            card.style.filter = 'brightness(0%)'
+            setTimeout(() => {
+                window.open(url,"_self");
+            }, 300);
+        }
+        else{
+            window.open(url,"_self");
+        }
     }
 
     const openFolder = () => {
@@ -429,7 +441,7 @@
         });
         folder += `
                 </div>
-                <div class="label" style="z-index:1000;position:relative;pointer-events:none">other</div>
+                <div class="label" style="position:relative;pointer-events:none">other</div>
             </div>
         `.trim();
         itemContainer.innerHTML += folder;
